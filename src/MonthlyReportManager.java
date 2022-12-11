@@ -9,7 +9,7 @@ public class MonthlyReportManager {
 
     public void loadFile() {
         for (int i = 1; i < 4; i++) {
-            ArrayList <Expense> monthInfo = new ArrayList<>();
+            ArrayList<Expense> monthInfo = new ArrayList<>();
             String content = readFileContents("resources/m.20210" + i + ".csv");
             String[] lines = content.split("\r?\n");
             for (int j = 1; j < lines.length; j++) {
@@ -26,7 +26,8 @@ public class MonthlyReportManager {
             monthlyReport.put(i, monthInfo);
         }
     }
-    public void getInfo(){
+
+    public void getInfo() {
         for (Integer key : monthlyReport.keySet()) {
             int maxSum = 0;
             int expense;
@@ -40,14 +41,14 @@ public class MonthlyReportManager {
                 if (product.isExpense) {
                     expense = product.quantity * product.sumOfone;
                     curExpense = expense;
-                    if (curExpense >= maxExpense){
+                    if (curExpense >= maxExpense) {
                         maxExpense = curExpense;
                         maxExpenseItemName = product.name;
                     }
                 } else {
                     revenue = product.quantity * product.sumOfone;
                     currentSum = revenue;
-                    if (currentSum >= maxSum){
+                    if (currentSum >= maxSum) {
                         maxSum = currentSum;
                         maxSumItemName = product.name;
                     }

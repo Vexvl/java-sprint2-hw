@@ -3,7 +3,8 @@ public class Expense {
     public boolean isExpense;
     public int quantity;
     public int sumOfone;
-    Expense(String name, boolean isExpense, int quantity, int sumOfone){
+
+    Expense(String name, boolean isExpense, int quantity, int sumOfone) {
         this.name = name;
         this.isExpense = isExpense;
         this.quantity = quantity;

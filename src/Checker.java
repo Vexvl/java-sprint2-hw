@@ -2,36 +2,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Checker {
-   public MonthlyReportManager reportManager;
+    public MonthlyReportManager reportManager;
     public YearlyReportManager yearlyReport;
 
-    public Checker(MonthlyReportManager reportManager, YearlyReportManager yearlyReport){
+    public Checker(MonthlyReportManager reportManager, YearlyReportManager yearlyReport) {
         this.reportManager = reportManager;
         this.yearlyReport = yearlyReport;
     }
 
-    public void makeCheck(){
+    public void makeCheck() {
         HashMap<Integer, ArrayList<Expense>> monthlyReport = reportManager.monthlyReport;
         ArrayList<YearReport> yearReport = yearlyReport.yearReport;
-        ArrayList <Integer> numbers = new ArrayList<>();
-        for (YearReport report : yearReport){
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (YearReport report : yearReport) {
             numbers.add(report.amount);
         }
-        for (Integer key : monthlyReport.keySet()){
+        for (Integer key : monthlyReport.keySet()) {
             int totalExpenses = 0;
             int totalRevenue = 0;
-            for (Expense product : monthlyReport.get(key)){
+            for (Expense product : monthlyReport.get(key)) {
                 if (product.isExpense == true) {
                     totalExpenses += product.quantity * product.sumOfone;
-                }
-                else {
+                } else {
                     totalRevenue += product.quantity * product.sumOfone;
                 }
             }
-            if (!numbers.contains(totalExpenses) || !numbers.contains(totalRevenue)){
+            if (!numbers.contains(totalExpenses) || !numbers.contains(totalRevenue)) {
                 System.out.println("В месяце " + key + " обнаружено несоответствие");
-            }
-            else  System.out.println("Проверка завершена успешно");
+            } else System.out.println("Проверка завершена успешно");
         }
     }
 }
