@@ -29,7 +29,7 @@ public class Checker {
             }
             if (!numbers.contains(totalExpenses) || !numbers.contains(totalRevenue)) {
                 System.out.println("В месяце " + key + " обнаружено несоответствие");
-            } else System.out.println("Проверка завершена успешно");
+            } else System.out.println("Месяц " + key + " - проверка завершена успешно");
         }
     }
 }
