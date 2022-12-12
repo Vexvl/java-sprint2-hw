@@ -8,31 +8,29 @@ public class Main {
         YearlyReportManager yearlyReportManager = new YearlyReportManager();
         Checker checker = new Checker(reportManager, yearlyReportManager);
         Scanner scanner = new Scanner(System.in);
-        boolean madeAccountM = false;
-        boolean madeAccountY = false;
+        boolean monthlyReportsLoaded = false;
+        boolean yearlyReportsLoaded = false;
         while (true) {
             showMenu();
             String command = scanner.nextLine();
             if (command.equals("1")) {
-                madeAccountM = true;
+                monthlyReportsLoaded = true;
                 reportManager.loadFile();
-                System.out.println("Месячные отсчёты считаны");
             } else if (command.equals("2")) {
-                if (madeAccountM) {
+                if (monthlyReportsLoaded) {
                     yearlyReportManager.loadFile();
-                    madeAccountY = true;
-                    System.out.println("Годовые отсчёты считаны");
+                    yearlyReportsLoaded = true;
                 } else System.out.println("Требуется считать месячные отсчёты");
             } else if (command.equals("3")) {
-                if (madeAccountM) {
+                if (monthlyReportsLoaded) {
                     checker.makeCheck();
                 } else System.out.println("Требуется считать месячные отсчёты");
             } else if (command.equals("4")) {
-                if (madeAccountM) {
+                if (monthlyReportsLoaded) {
                     reportManager.getInfo();
                 } else System.out.println("Требуется считать месячные отсчёты");
             } else if (command.equals("5")) {
-                if (madeAccountM && madeAccountY) {
+                if (monthlyReportsLoaded && yearlyReportsLoaded) {
                     System.out.println("Год - 2021: ");
                     yearlyReportManager.countProfitPerMonth();
                     yearlyReportManager.countAverageExpensePerMonth();

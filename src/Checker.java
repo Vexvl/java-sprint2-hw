@@ -17,10 +17,10 @@ public class Checker {
         for (YearReport report : yearReport) {
             numbers.add(report.amount);
         }
-        for (Integer key : monthlyReport.keySet()) {
+        for (Integer month : monthlyReport.keySet()) {
             int totalExpenses = 0;
             int totalRevenue = 0;
-            for (Expense product : monthlyReport.get(key)) {
+            for (Expense product : monthlyReport.get(month)) {
                 if (product.isExpense == true) {
                     totalExpenses += product.quantity * product.sumOfone;
                 } else {
@@ -28,8 +28,8 @@ public class Checker {
                 }
             }
             if (!numbers.contains(totalExpenses) || !numbers.contains(totalRevenue)) {
-                System.out.println("В месяце " + key + " обнаружено несоответствие");
-            } else System.out.println("Месяц " + key + " - проверка завершена успешно");
+                System.out.println("В месяце " + month + " обнаружено несоответствие");
+            } else System.out.println("Месяц " + month + " - проверка завершена успешно");
         }
     }
 }

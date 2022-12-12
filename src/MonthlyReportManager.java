@@ -11,19 +11,24 @@ public class MonthlyReportManager {
         for (int i = 1; i < 4; i++) {
             ArrayList<Expense> monthInfo = new ArrayList<>();
             String content = readFileContents("resources/m.20210" + i + ".csv");
-            String[] lines = content.split("\r?\n");
-            for (int j = 1; j < lines.length; j++) {
-                String line = lines[j];
-                String[] parts = line.split(",");
-                String name = parts[0];
-                boolean isExpense = Boolean.parseBoolean(parts[1]);
-                int quantity = Integer.parseInt(parts[2]);
-                int sumOfone = Integer.parseInt(parts[3]);
+            if (content == null) {
+                System.out.println("Не найдено resources/m.20210" + i + ".csv");
+            } else {
+                String[] lines = content.split("\r?\n");
+                for (int j = 1; j < lines.length; j++) {
+                    String line = lines[j];
+                    String[] parts = line.split(",");
+                    String name = parts[0];
+                    boolean isExpense = Boolean.parseBoolean(parts[1]);
+                    int quantity = Integer.parseInt(parts[2]);
+                    int sumOfone = Integer.parseInt(parts[3]);
 
-                Expense expense = new Expense(name, isExpense, quantity, sumOfone);
-                monthInfo.add(expense);
+                    Expense expense = new Expense(name, isExpense, quantity, sumOfone);
+                    monthInfo.add(expense);
+                }
+                System.out.println("resources/m.20210" + i  + ".csv - считано");
+                monthlyReport.put(i, monthInfo);
             }
-            monthlyReport.put(i, monthInfo);
         }
     }
 

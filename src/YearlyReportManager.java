@@ -8,16 +8,22 @@ public class YearlyReportManager {
 
     void loadFile() {
         String content = readFileContents("resources/y.2021.csv");
-        String[] lines = content.split("\r?\n");
-        for (int i = 1; i < lines.length; i++) {
-            String line = lines[i];
-            String[] parts = line.split(",");
-            String nameNum = parts[0];
-            int amount = Integer.parseInt(parts[1]);
-            boolean isExpense = Boolean.parseBoolean(parts[2]);
+        if (content == null){
+            System.out.println("Не найдено resources/y.2021.csv");
+        }
+        else {
+            String[] lines = content.split("\r?\n");
+            for (int i = 1; i < lines.length; i++) {
+                String line = lines[i];
+                String[] parts = line.split(",");
+                String nameNum = parts[0];
+                int amount = Integer.parseInt(parts[1]);
+                boolean isExpense = Boolean.parseBoolean(parts[2]);
 
-            YearReport yReport = new YearReport(nameNum, amount, isExpense);
-            yearReport.add(yReport);
+                YearReport yReport = new YearReport(nameNum, amount, isExpense);
+                yearReport.add(yReport);
+            }
+            System.out.println("Годовые отсчёты считаны");
         }
     }
 
